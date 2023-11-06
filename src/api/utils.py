@@ -4,7 +4,7 @@ from clickhouse_driver import Client
 client = Client('localhost')
 
 
-def get_popular_words():
+def get_popular_words() -> list[dict[str, str | int]]:
     result = []
     data, columns = client.execute("select arrayJoin(splitByChar(' ', replaceRegexpAll(text, '[.,]', ' '))) as word, count() as count "
                                    "from (select text from news) group by word order by count desc limit 1, 100",
