@@ -3,7 +3,7 @@ from clickhouse_driver import Client
 from csv import DictReader
 
 
-def iter_csv(filename: str):
+def iter_csv(filename: str) -> None:
     converters = {'date': lambda x: datetime.strptime(x, '%Y/%m/%d')}
 
     with open(filename, 'r') as f:
@@ -26,4 +26,4 @@ if __name__ == '__main__':
                 'date Date'
            ') Engine = MergeTree ORDER BY date'
     )
-    client.execute('INSERT INTO news VALUES', iter_csv('/src/data/lenta-ru-news.csv'))
+    client.execute('INSERT INTO news VALUES', iter_csv('../data/lenta-ru-news.csv'))
