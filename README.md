@@ -2,7 +2,7 @@
 >To run the app you should follow this steps:
  
 1. Install [**Docker**](https://docs.docker.com/get-docker/)
-2. Go to the project directory
+2. Clone repository and go to the project directory
 3. Type in terminal:
 ```
 sudo docker compose up -d && \
