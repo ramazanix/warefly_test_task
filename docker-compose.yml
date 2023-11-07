@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   clickhouse-server:
@@ -9,7 +9,24 @@ services:
       - '8123:8123'
       - '9000:9000'
     volumes:
-      - ./clickhouse/db:/var/lib/clickhouse
-      - ./clickhouse/logs:/var/log/clickhouse-server
+      - ./src/db:/var/lib/src
+      - ./src/logs:/var/log/src-server
     ulimits:
       nofile: 262144
+    networks:
+      - my_net
+
+  backend:
+    build: .
+    ports:
+      - '9090:9090'
+    depends_on:
+      clickhouse-server:
+        condition: service_started
+    container_name: backend
+    networks:
+      - my_net
+
+networks:
+  my_net:
+    name: my_net
