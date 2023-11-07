@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .utils import get_popular_words
+from utils import get_popular_words
 
 
 app = FastAPI()
