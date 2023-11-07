@@ -1,7 +1,7 @@
 from clickhouse_driver import Client
 
 
-client = Client('localhost')
+client = Client('clickhouse-server')
 
 
 def get_popular_words() -> list[dict[str, str | int]]:

@@ -14,7 +14,7 @@ def iter_csv(filename: str) -> None:
 
 if __name__ == '__main__':
     settings = {'input_format_null_as_default': True}
-    client = Client('localhost', settings=settings)
+    client = Client('clickhouse-server', settings=settings)
     client.execute(
         'CREATE TABLE IF NOT EXISTS news '
             '('
@@ -26,4 +26,4 @@ if __name__ == '__main__':
                 'date Date'
            ') Engine = MergeTree ORDER BY date'
     )
-    client.execute('INSERT INTO news VALUES', iter_csv('../data/lenta-ru-news.csv'))
+    client.execute('INSERT INTO news VALUES', iter_csv('/src/data/lenta-ru-news.csv'))
